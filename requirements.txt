@@ -3,4 +3,4 @@ flask-cors
 langgraph
 groq
 python-dotenv
-gunicorngunicorn
+gunicorn
