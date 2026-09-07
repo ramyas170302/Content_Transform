@@ -1,0 +1,4 @@
+langchain
+langgraph
+flask
+flask-cors

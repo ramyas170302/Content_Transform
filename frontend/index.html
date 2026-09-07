@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Content Transformation Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#brandGrad)" />
+            <path d="M8 14L12 10L16 14L20 10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18L12 14L16 18L20 14" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop stop-color="#6C5CE7" />
+                <stop offset="1" stop-color="#00B4D8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="brand-text">AI Content Studio</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-section="create">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span>Create Content</span>
+        </a>
+        <a href="#" class="nav-item" data-section="history">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>History</span>
+        </a>
+        <a href="#" class="nav-item" data-section="about">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>About</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status">
+          <div class="status-dot online"></div>
+          <div class="status-info">
+            <span class="status-label">AI Transformation Engine</span>
+            <span class="status-value">System Ready</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile sidebar toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- ==================== DASHBOARD / CREATE CONTENT ==================== -->
+      <section id="page-dashboard" class="page-section">
+
+      <!-- Welcome Banner (Dashboard) -->
+      <div class="welcome-banner hidden" id="welcomeBanner">
+        <div class="welcome-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="welcome-content">
+          <h2>Welcome to your AI Content Studio</h2>
+          <p>Paste your source material, choose the formats you need, and let the specialized AI agents transform it into communication-ready content — all verified against your source.</p>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <h1 class="header-title">AI Content Transformation</h1>
+          <p class="header-subtitle">Transform one source into multiple communication formats using intelligent AI agents.</p>
+        </div>
+        <div class="header-badge">
+          <span class="badge-dot"></span>
+          AI Engine Ready
+        </div>
+      </header>
+
+      <!-- Source Content Section -->
+      <section class="card" id="sourceSection">
+        <div class="card-header">
+          <div class="card-number">1</div>
+          <h2 class="card-title">Source Content</h2>
+        </div>
+        <div class="card-body">
+          <div class="textarea-wrapper">
+            <textarea
+              id="sourceContent"
+              placeholder="Paste your article, report, advisory, announcement or any source content here..."
+              rows="10"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="char-count">Characters: <span id="charCount">0</span></span>
+              <button class="btn-clear" id="clearBtn">Clear</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Request Section -->
+      <section class="card" id="requestSection">
+        <div class="card-header">
+          <div class="card-number">2</div>
+          <h2 class="card-title">What do you want to create?</h2>
+        </div>
+        <div class="card-body">
+          <div class="output-options">
+            <label class="option-chip selected" data-output="summary">
+              <input type="checkbox" checked />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">📄</span>
+              Summary
+            </label>
+            <label class="option-chip selected" data-output="linkedin">
+              <input type="checkbox" checked />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">💼</span>
+              LinkedIn Post
+            </label>
+            <label class="option-chip selected" data-output="twitter">
+              <input type="checkbox" checked />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">🐦</span>
+              Twitter/X Thread
+            </label>
+            <label class="option-chip" data-output="advisory">
+              <input type="checkbox" />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">📋</span>
+              Advisory
+            </label>
+            <label class="option-chip" data-output="presentation">
+              <input type="checkbox" />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">📊</span>
+              Presentation
+            </label>
+            <label class="option-chip" data-output="infographic">
+              <input type="checkbox" />
+              <span class="chip-check">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="chip-icon">🎨</span>
+              Infographic
+            </label>
+          </div>
+
+          <div class="custom-request">
+            <label class="field-label">Custom Request</label>
+            <input
+              type="text"
+              id="customRequest"
+              placeholder="Example: Create a LinkedIn post for students about emerging AI trends..."
+              class="text-input"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Transform Button -->
+      <div class="transform-action">
+        <button class="btn-transform" id="transformBtn">
+          <span class="btn-text">✨ Transform Content</span>
+          <span class="btn-loading">
+            <span class="spinner"></span>
+            Processing...
+          </span>
+        </button>
+      </div>
+
+      <!-- Error Display -->
+      <div class="error-card hidden" id="errorCard">
+        <div class="error-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <div class="error-content">
+          <h3>Something went wrong</h3>
+          <p id="errorMessage"></p>
+          <button class="btn-retry" id="retryBtn">Retry</button>
+        </div>
+      </div>
+
+      <!-- AI Processing Section -->
+      <section class="card hidden" id="processingSection">
+        <div class="card-header">
+          <h2 class="card-title">AI Processing</h2>
+          <div class="processing-badge">
+            <span class="spinner small"></span>
+            In Progress
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="pipeline">
+            <div class="pipeline-step" data-step="source" id="step-source">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">Source</span>
+                <span class="step-desc">Content received</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="analyzer" id="step-analyzer">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">🔎 Analyzer</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="planner" id="step-planner">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">🧠 Planner</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="router" id="step-router">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">🔀 Dynamic Router</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="agents" id="step-agents">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">🤖 Output Agents</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="factchecker" id="step-factchecker">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">🔍 Fact Checker</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+
+            <div class="pipeline-connector">
+              <svg width="2" height="32" viewBox="0 0 2 32"><line x1="1" y1="0" x2="1" y2="32" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
+            </div>
+
+            <div class="pipeline-step" data-step="complete" id="step-complete">
+              <div class="step-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="step-info">
+                <span class="step-name">✓ Complete</span>
+                <span class="step-desc">Waiting...</span>
+              </div>
+              <div class="step-status waiting">
+                <span class="status-circle"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Agent Routing -->
+      <section class="card hidden" id="routingSection">
+        <div class="card-header">
+          <h2 class="card-title">Dynamic Agent Routing</h2>
+        </div>
+        <div class="card-body">
+          <div class="agent-grid" id="agentGrid">
+            <!-- Populated by JS -->
+          </div>
+          <p class="routing-note">Only the agents required for this request were executed.</p>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section class="hidden" id="resultsSection">
+        <div class="results-header">
+          <h2 class="section-title">Generated Content</h2>
+        </div>
+
+        <div class="results-tabs" id="resultsTabs">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="results-content" id="resultsContent">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Fact Check Section -->
+      <section class="card hidden" id="factCheckSection">
+        <div class="card-header">
+          <h2 class="card-title">🔍 Fact Check Report</h2>
+        </div>
+        <div class="card-body">
+          <div class="fact-check-score">
+            <div class="score-label">Grounding Score</div>
+            <div class="score-bar-wrapper">
+              <div class="score-bar" id="scoreBar" style="width: 0%"></div>
+            </div>
+            <div class="score-value" id="scoreValue">0%</div>
+          </div>
+
+          <!-- Human review warning -->
+          <div class="review-warning hidden" id="reviewWarning">
+            <div class="warning-icon">⚠</div>
+            <div class="warning-content">
+              <h4>Human Review Recommended</h4>
+              <p>Some generated claims could not be fully verified against the source.</p>
+            </div>
+          </div>
+
+          <div class="claims-list" id="claimsList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Empty State -->
+      <section class="empty-state" id="emptyState">
+        <div class="empty-illustration">
+          <div class="empty-doc">
+            <div class="doc-line long"></div>
+            <div class="doc-line medium"></div>
+            <div class="doc-line short"></div>
+            <div class="doc-line long"></div>
+            <div class="doc-line medium"></div>
+          </div>
+          <div class="empty-arrow">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="empty-outputs">
+            <div class="output-box"></div>
+            <div class="output-box"></div>
+            <div class="output-box"></div>
+          </div>
+        </div>
+        <p class="empty-text">Your generated content will appear here.</p>
+      </section>
+
+      </section><!-- /page-dashboard -->
+
+      <!-- ==================== HISTORY ==================== -->
+      <section id="page-history" class="page-section hidden">
+        <div class="results-header">
+          <h2 class="section-title">History</h2>
+        </div>
+        <div class="history-toolbar">
+          <p class="history-subtitle">Your past transformations are saved in this browser.</p>
+          <button class="btn-clear" id="clearHistoryBtn">Clear History</button>
+        </div>
+        <div id="historyEmpty" class="history-empty">
+          <p>No transformations yet.</p>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <!-- ==================== ABOUT ==================== -->
+      <section id="page-about" class="page-section hidden">
+        <div class="results-header">
+          <h2 class="section-title">About</h2>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <p class="about-intro">
+              <strong>AI-powered Content Transformation Platform</strong> — a multi-agent system that turns a single source document into multiple communication-ready formats, while keeping every output grounded in the original source.
+            </p>
+
+            <h3 class="about-subtitle">How it works</h3>
+
+            <div class="about-agent">
+              <div class="about-agent-head">
+                <span class="about-icon">🔎</span>
+                <span class="about-name">Analyzer Agent</span>
+              </div>
+              <p class="about-desc">Reads the source content and extracts the key facts, statistics, entities, dates, problems, and recommendations into a structured understanding.</p>
+            </div>
+
+            <div class="about-agent">
+              <div class="about-agent-head">
+                <span class="about-icon">🧠</span>
+                <span class="about-name">Planner Agent</span>
+              </div>
+              <p class="about-desc">Decides which output formats are needed and creates an execution plan for the rest of the pipeline.</p>
+            </div>
+
+            <div class="about-agent">
+              <div class="about-agent-head">
+                <span class="about-icon">🔀</span>
+                <span class="about-name">Dynamic Router</span>
+              </div>
+              <p class="about-desc">Routes each request to only the specialized output agents that are actually required — nothing runs unnecessarily.</p>
+            </div>
+
+            <div class="about-agent">
+              <div class="about-agent-head">
+                <span class="about-icon">🤖</span>
+                <span class="about-name">Output Agents</span>
+              </div>
+              <p class="about-desc">Specialized agents generate each requested format: Summary, LinkedIn Post, Twitter/X Thread, Advisory, Presentation, and Infographic.</p>
+            </div>
+
+            <div class="about-agent">
+              <div class="about-agent-head">
+                <span class="about-icon">🔍</span>
+                <span class="about-name">Fact Checker</span>
+              </div>
+              <p class="about-desc">Verifies the generated content against the original source, reports a grounding score, and flags any claim that could not be fully verified.</p>
+            </div>
+
+            <p class="about-closing">
+              The system transforms source material into communication-ready content while keeping outputs grounded in the provided source.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
