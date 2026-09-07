@@ -1,4 +1,6 @@
-langchain
-langgraph
-flask
+Flask
 flask-cors
+langgraph
+groq
+python-dotenv
+gunicorngunicorn
