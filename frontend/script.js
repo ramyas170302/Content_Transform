@@ -4,7 +4,12 @@
    ============================================ */
 
 // ---- API Configuration ----
-const API_URL = "http://127.0.0.1:5000/transform";
+// Use the same origin when served by Flask (locally or on Render),
+// and fall back to localhost when the page is opened directly from the file system.
+const API_BASE = window.location.protocol.startsWith("http")
+  ? ""
+  : "http://127.0.0.1:5000";
+const API_URL = API_BASE + "/transform";
 
 // ---- Agent Definitions ----
 const AGENTS = [

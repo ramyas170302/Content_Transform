@@ -2,7 +2,8 @@
 # Flask Backend for AI Content Transformation
 # ==========================================
 
-from flask import Flask, request, jsonify
+import os
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from agents.graph import app as graph_app
 
@@ -11,7 +12,10 @@ from agents.graph import app as graph_app
 # 1. Flask Setup
 # ==========================================
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+
+app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
 
 
 # ==========================================
@@ -22,11 +26,20 @@ CORS(app)
 
 
 # ==========================================
-# 3. Health Check
+# 3. Serve Frontend (root / static assets)
 # ==========================================
 
 @app.route("/", methods=["GET"])
 def home():
+    return send_from_directory(FRONTEND_DIR, "index.html")
+
+
+# ==========================================
+# 4. Health Check
+# ==========================================
+
+@app.route("/health", methods=["GET"])
+def health():
     return jsonify({
         "message": "AI Content Transformation API is running",
         "status": "success"
@@ -34,7 +47,7 @@ def home():
 
 
 # ==========================================
-# 4. Transform Endpoint
+# 5. Transform Endpoint
 # ==========================================
 
 @app.route("/transform", methods=["POST"])
@@ -110,7 +123,7 @@ def transform():
 
 
 # ==========================================
-# 5. Server Startup
+# 6. Server Startup
 # ==========================================
 
 if __name__ == "__main__":
